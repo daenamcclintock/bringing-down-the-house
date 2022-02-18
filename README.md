@@ -8,7 +8,7 @@ This project was inspired by my love for math and gambling. I taught myself how 
 The project design is outlined in the flow chart below. It will be an interactive game where users are able to choose their move (hit, stand, split, double down, etc) depending on the cards dealt and the current card count.
 
 # Game Project Design Flow Chart
-![Game Project Design Flow Chart](Game Project Design Flow Chart.png)
+![Game Project Design Flow Chart](imgs/Game Project Design Flow Chart.png)
 
 At the end of each round, the player will be shown, statistically, how they should have played that hand to increase understanding of the probability involved in the game.
 
@@ -21,10 +21,10 @@ Create a POV setting of a player at a blackjack table
 Have cards that will be dealt out during the game
 ```
 # Picture of Blackjack Table for Game Homescreen
-![Homescreen Picture of Blackjack Table](Picture of Blackjack Table.png)
+![Homescreen Picture of Blackjack Table](imgs/Picture of Blackjack Table.jpeg)
 
 # Blackjack Table Design for In-Game Use
-![Blackjack Table Design](Blackjack Table.png)
+![Blackjack Table Design](imgs/Blackjack Table.png)
 
 ``` js
 Have cards dealt out to the dealer and player at random from a shuffled deck (deck is shuffled after last card is played, if < 4 cards left in deck, shuffle)
