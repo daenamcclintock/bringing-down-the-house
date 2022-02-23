@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="css/style.css">
     <title>BlackJack Game</title>
 </head>
-<body id="start-screen-container">
-    <div>
+<body id="body">
+    <div id="start-screen-container">
         <div class="titles">
             <h1 id="title">Bringing Down the House!</h1>
-            <h3 id="subtitle">Learn to Play BlackJack and Count Cards</h3>
+            <h3 id="subtitle">Learn to Play Black<span style="color:black">Jack</span> and Count Cards</h3>
         </div>
 
         <div class="buttons">
@@ -47,7 +47,7 @@
                     <button data-close-button class="close-button2">&times;</button>
                 </div>
                 <div class="modal-body2">
-                    <img src="/Users/daenamcclintock/sei/projects/game-project/imgs/Blackjack-Basic-Strategy-Chart.png" alt="BlackJack Basic Strategy">
+                    <img src="imgs/Blackjack-Basic-Strategy-Chart.png" alt="BlackJack Basic Strategy">
                 </div>
             </div>
             <div id="overlay2"></div>
@@ -58,28 +58,25 @@
         </div>
     </div>
     
-</body>
 
-<div id="game-play-container">
-    <div id="row1">
+<div class="game-play-container">
+    <div class="flex-blackjack-row-1">
         <table>
             <tr>
                 <th id="win-header">Wins</th>
-                <th id="lose-header">Losses</th>
-                <th id="tie-header">Draws</th>
+                <th id="loss-header">Losses</th>
+                <th id="draw-header">Draws</th>
             </tr>
 
              <tr>
                 <td><span id="wins">0</span></td>
                 <td><span id="losses">0</span></td>
-                <td><span id="ties">0</span></td>
+                <td><span id="draws">0</span></td>
             </tr>
-
         </table>
-
     </div>
 
-    <div id="row2">
+    <div class="flex-blackjack-row-2">
         <div id="player-box">
             <h2>Player: <span id="player-blackjack-result">0</span></h2>
         </div>
@@ -89,16 +86,17 @@
         </div>
     </div>
 
-    <div id="row3">
+    <div class="flex-blackjack-row-3">
         <div>
-            <button class="button" id="hit-button">Hit</button>
-            <button class="button" id="stand-button">Stand</button>
-            <button class="button" id="deal-button">Deal</button>
-            <button class="button" id="restart-button">Restart</button>
+            <button class="btn-lg btn-primary mr-2" id="blackjack-hit-button">Hit</button>
+            <button class="btn-lg btn-warning mr-2" id="blackjack-stand-button">Stand</button>
+            <button class="btn-lg btn-danger mr-2" id="blackjack-deal-button">Deal</button>
+            <button class="btn-lg btn-success mr-2" id="blackjack-restart-button">Restart</button>
         </div>
 
     </div>
 
 </div>
 <script src="js/app.js"></script>
+</body>
 </html>

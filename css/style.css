@@ -1,4 +1,4 @@
-#start-screen-container {
+#body {
     background-image: url("/Users/daenamcclintock/sei/projects/game-project/imgs/Picture-of-Blackjack-Table.jpeg");
     background-repeat: no-repeat;
     background-size: fill;
@@ -21,13 +21,82 @@ h3 {
     font-size: 25px;
 }
 
-.container {
-    margin: 0 auto;
-    text-align: left;
-    color: white;
-    font-family: sans-serif;
-    font-size: 25px;
+.flex-blackjack-row-1, .flex-blackjack-row-2, .flex-blackjack-row-3 {
+  display: flex;
+  padding: 5px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
+
+.flex-blackjack-row-2 div {
+  padding: 10px;
+  flex: 1;
+  height: 350px;
+  text-align: center;
+}
+
+.flex-blackjack-row-2 div img {
+  padding: 10px;
+  object-fit: contain;
+}
+
+.flex-blackjack-row-3 div {
+  padding: 10px;
+}
+
+.flex-blackjack-row-3 div button {
+  padding: 10px;
+  margin: 10px;
+}
+
+#blackjack-hit-button {
+  background-color: blue;
+  font-weight: bold;
+  color: white;
+  border: 2px solid black;
+}
+
+#blackjack-stand-button {
+  background-color: yellow;
+  font-weight: bold;
+  color: black;
+  border: 2px solid black;
+}
+
+#blackjack-deal-button {
+  background-color: red;
+  font-weight: bold;
+  color: white;
+  border: 2px solid black;
+}
+
+#blackjack-restart-button {
+  background-color: green;
+  font-weight: bold;
+  color: white;
+  border: 2px solid black;
+}
+
+table, th, td {
+  padding: 5px;
+  border: 1px solid white;
+  color: white;
+  align-items: center;
+  text-align: center;
+}
+
+#win-header {
+  color: lightgreen;
+}
+
+#loss-header {
+  color: #d32f2f;
+}
+
+#draw-header {
+  color: yellow;
+}
+
 
 #start-button {
     font-weight: bold;
@@ -54,11 +123,16 @@ h3 {
     margin: 10px 10px 0px 20px;
 }
 
-#game-play-container {
-    background-image: url("/Users/daenamcclintock/sei/projects/game-project/imgs/Blackjack-Table.png");
-    background-repeat: no-repeat;
-    background-size: fill;
-    display: none;
+.game-play-container {
+  background-image: url("/Users/daenamcclintock/sei/projects/game-project/imgs/Blackjack-Table.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: none;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  font-family: sans-serif;
+  font-size: 25px;
 }
 
 
@@ -81,144 +155,124 @@ h3 {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: 200ms ease-in-out;
-    border: 1px solid black;
-    border-radius: 10px;
-    z-index: 10;
-    background-color: white;
-    width: 500px;
-    max-width: 80%;
-  }
-  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: white;
+  width: 500px;
+  max-width: 80%;
+}
+
 .modal.active {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  
+  transform: translate(-50%, -50%) scale(1);
+}
+
 .modal-header {
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid black;
-  }
-  
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
 .modal-header .title {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
 .modal-header .close-button {
-    cursor: pointer;
-    border: none;
-    outline: none;
-    background: none;
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
 .modal-body {
-    padding: 10px 15px;
-  }
-  
+  padding: 10px 15px;
+}
+
 #overlay {
-    position: fixed;
-    opacity: 0;
-    transition: 200ms ease-in-out;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, .5);
-    pointer-events: none;
-  }
-  
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  pointer-events: none;
+}
+
 #overlay.active {
-    opacity: 1;
-    pointer-events: all;
-  }
+  opacity: 1;
+  pointer-events: all;
+}
 
 .modal2 {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: 200ms ease-in-out;
-    border: 1px solid black;
-    border-radius: 10px;
-    z-index: 10;
-    background-color: white;
-    width: 500px;
-    max-width: 80%;
-  }
-  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: white;
+  width: 500px;
+  max-width: 80%;
+}
+
 .modal2.active {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  
+  transform: translate(-50%, -50%) scale(1);
+}
+
 .modal-header2 {
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid black;
-  }
-  
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
 .modal-header2 .title2 {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
 .modal-header2 .close-button2 {
-    cursor: pointer;
-    border: none;
-    outline: none;
-    background: none;
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
 .modal-body2 {
-    padding: 10px 15px;
-  }
-  
+  padding: 10px 15px;
+}
+
 #overlay2 {
-    position: fixed;
-    opacity: 0;
-    transition: 200ms ease-in-out;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, .5);
-    pointer-events: none;
-  }
-  
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  pointer-events: none;
+}
+
 #overlay2.active {
-    opacity: 1;
-    pointer-events: all;
-  }
+  opacity: 1;
+  pointer-events: all;
+}
