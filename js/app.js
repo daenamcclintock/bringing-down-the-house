@@ -108,6 +108,14 @@ let cardCount = 0;
 // Used cards - empty array where cards will be added once they have already been played
 let usedCards = [];
 
+
+const startScreenContainer = document.getElementById('start-screen-container');
+const blackjackGameRules = document.getElementById('game-rules');
+const basicStrategyButton = document.getElementById('basic-strategy');
+const gamePlayContainer = document.getElementById('game-play-container');
+const body = document.getElementById('body')
+
+
 // Hit, Stand, Deal, and Restart button event listeners
 document
     .querySelector('#blackjack-hit-button')
@@ -125,23 +133,16 @@ document
     .querySelector('#blackjack-restart-button')
     .addEventListener('click', blackJackRestart);
 
+// Event listener to link the "Start Game button to the gameStart function"
+document
+    .getElementById('start-button').addEventListener('click', gameStart);
 
-
-const startGameButton = document.getElementById('start-button');
-const startScreenContainer = document.getElementById('start-screen-container');
-const blackjackGameRules = document.getElementById('game-rules');
-const basicStrategyButton = document.getElementById('basic-strategy');
-const gamePlayContainer = document.querySelector('.game-play-container');
-const body = document.getElementById('body')
-
-
-startGameButton.addEventListener('click', gameStart);
 
 // Function to change the UI from the homescreen to the game screen when the startGame button is clicked
 function gameStart() {
     gamePlay = true;
     startScreenContainer.style.display = 'none';
-    gamePlayContainer.style.display = 'contents';
+    gamePlayContainer.style.display = 'contents'
     body.style.backgroundImage = "url(imgs/Blackjack-Table.png)";
     body.style.backgroundSize = 'cover';
     body.style.backgroundPositionX = '0px';
@@ -155,8 +156,11 @@ function blackJackHit() {
         showCard(card, you);
         updateScore(card, you);
         showScore(you);
+        // cardCounter(card);
+        // cardDiscard(card);
+        cardDeckLeft();
         cardCounter(card);
-        cardDiscard(card);
+        showCardCount();
     }
 }
 
@@ -167,7 +171,7 @@ function randomCard() {
     return randomCard;
 }
 
-// Function to display and image of the random card that is dealt
+// Function to display the image of the random card that is dealt
 function showCard(card, activePlayer) {
     if (activePlayer['score'] <= 21) {
         let cardImage = document.createElement('img');
@@ -177,7 +181,7 @@ function showCard(card, activePlayer) {
     }
 }
 
-// Function to change the width size of the window for smaller/larger screens
+// Function to change the width size of the card image depending on the window size
 function widthSize() {
     if(windowWidth > 1000) {
         let newWidthSize = (window.screen.width * 0.1);
@@ -188,7 +192,7 @@ function widthSize() {
     }
 }
 
-// Function to change the height size of the window for smaller/larger screens
+// Function to change the height size of the card image depending on the window size
 function heightSize() {
     if (windowHeight > 700) {
         let newHeightSize = (window.screen.height * 0.18);
@@ -201,7 +205,7 @@ function heightSize() {
 
 // Function to update the score
 function updateScore(card, activePlayer) {
-    if(card === 'A-clubs' || card === 'A-hearts' || card === 'A-spades' || card === 'A-diamonds') {
+    if(card.includes('A')) {
         if (activePlayer['score'] + blackJackGame['cardsMap'][card][1] <= 21) {
             activePlayer['score'] += blackJackGame['cardsMap'][card][1];
         }
@@ -347,36 +351,76 @@ function blackJackRestart() {
     blackJackGame.draws = 0;
 }
 
+// // Function to keep the card count
+// function cardCounter(card)  {
+//     switch(card) {
+//         case 2:
+//         case 3:
+//         case 4:
+//         case 5:
+//         case 6:
+//             cardCount++;
+//             break;
+//         case 7:
+//         case 8:
+//         case 9:
+//             cardCount += 0;
+//             break;
+//         case 10:
+//         case 'J':
+//         case 'Q':
+//         case 'K':
+//         case 'A':
+//             cardCount--;
+//     }
+//     return cardCount + (cardCount > 0 ? " Bet" : " Hold");
+// }
+
 // Function to keep the card count
-function cardCounter(card)  {
-    switch(card) {
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-            cardCount++;
-            break;
-        case 7:
-        case 8:
-        case 9:
-            cardCount += 0;
-            break;
-        case 10:
-        case 'J':
-        case 'Q':
-        case 'K':
-        case 'A':
-            cardCount--;
+function cardCounter(card) {
+    if (card.includes('2') || card.includes('3') || card.includes('4') || card.includes('5') || card.includes('6')) {
+        cardCount++;
     }
-    return cardCount + (cardCount > 0 ? " Bet" : " Hold");
+    else if (card.includes('10') || card.includes('J') || card.includes('Q') || card.includes('K') || card.includes('A')) {
+        cardCount--;
+    }
+    else {
+        cardCount +=0;
+    }
 }
 
-// Function to move the randomly chosen card to a new array usedCards
-function cardDiscard(card) {
-    if (blackJackGame['cardDeck'].length > 0) {
-        blackJackGame['cardDeck'].splice()
+// Function to show the card count in the "$ Card Counter $"" button
+function showCardCount() {
+    if (cardsLeft > 0) {
+        document.querySelector('#card-count').textContent = cardCount;
     }
+}
+
+// // Function to move the randomly chosen card to a new array usedCards
+// function cardDiscard(card) {
+//     let i = 0;
+//     if (blackJackGame['cardDeck'].length > 0) {
+//         let cardIndex = 
+        
+//         let slicedcardArray = blackJackGame['cardDeck'].slice(randomIndex);
+//         usedCards.push(slicedcardArray[i]);
+//     }
+//     else {
+//         blackJackRestart();
+//     }
+// }
+
+// Function to update the cards left in the deck
+let cardsLeft = 52;
+function cardDeckLeft() {
+    if (cardsLeft > 0) {
+        cardsLeft--;
+        document.querySelector
+    }
+    else {
+        blackJackRestart()
+    }
+    return cardsLeft;
 }
 
 
@@ -407,6 +451,8 @@ function cardDiscard(card) {
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
+const overlay2 = document.getElementById('overlay2')
+const overlay3 = document.getElementById('overlay3')
 
 // Adds an event listener and calls the function to open the modal when the button is clicked
 openModalButtons.forEach(button => {
@@ -425,9 +471,17 @@ overlay.addEventListener('click', () => {
 })
 
 // Adds an overlay to allow the 'BlackJack Basic Strategy' modal to be closed by clicking anywhere on the screen
-overlay.addEventListener('click', () => {
-    const modals = document.querySelectorAll('.modal2.active')
-    modals.forEach(modal => {
+overlay2.addEventListener('click', () => {
+    const modals2 = document.querySelectorAll('.modal2.active')
+    modals2.forEach(modal => {
+      closeModal(modal)
+    })
+  })
+
+// Adds an overlay to allow the 'BlackJack Basic Strategy' modal to be closed by clicking anywhere on the screen
+overlay3.addEventListener('click', () => {
+    const modals3 = document.querySelectorAll('.modal3.active')
+    modals3.forEach(modal => {
       closeModal(modal)
     })
   })
@@ -443,8 +497,16 @@ closeModalButtons.forEach(button => {
 // Event listener to close the 'BlackJack Basic Strategy' modal
 closeModalButtons.forEach(button => {
     button.addEventListener('click', () => {
-      const modal = button.closest('.modal2')
-      closeModal(modal)
+      const modal2 = button.closest('.modal2')
+      closeModal(modal2)
+    })
+  })
+
+// Event listener to close the 'BlackJack Basic Strategy' modal
+closeModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const modal3 = button.closest('.modal3')
+      closeModal(modal3)
     })
   })
 
