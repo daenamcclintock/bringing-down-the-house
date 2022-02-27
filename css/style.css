@@ -86,6 +86,13 @@ h3 {
 }
 
 #blackjack-deal-button {
+  background-color: lightblue;
+  font-weight: bold;
+  color: black;
+  border: 2px solid black;
+}
+
+#blackjack-new-hand-button {
   background-color: red;
   font-weight: bold;
   color: white;
@@ -99,7 +106,7 @@ h3 {
   border: 2px solid black;
 }
 
-#blackjack-hit-button, #blackjack-stand-button, #blackjack-deal-button, #blackjack-restart-button {
+#blackjack-hit-button, #blackjack-stand-button, #blackjack-deal-button, #blackjack-new-hand-button, #blackjack-restart-button {
   margin-top: 50px;
   margin-left: 15px;
   padding: 20px;

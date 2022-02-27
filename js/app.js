@@ -116,7 +116,7 @@ const gamePlayContainer = document.getElementById('game-play-container');
 const body = document.getElementById('body')
 
 
-// Hit, Stand, Deal, and Restart button event listeners
+// Hit, Stand, Deal, New Hand, and Restart button event listeners
 document
     .querySelector('#blackjack-hit-button')
     .addEventListener('click', blackJackHit);
@@ -128,6 +128,10 @@ document
 document
     .querySelector('#blackjack-deal-button')
     .addEventListener('click', blackJackDeal);
+
+document
+    .querySelector('#blackjack-new-hand-button')
+    .addEventListener('click', blackJackNewHand);
 
 document
     .querySelector('#blackjack-restart-button')
@@ -156,11 +160,10 @@ function blackJackHit() {
         showCard(card, you);
         updateScore(card, you);
         showScore(you);
-        // cardCounter(card);
-        // cardDiscard(card);
         cardDeckLeft();
         cardCounter(card);
         showCardCount();
+        // discardCard(card);
     }
 }
 
@@ -203,6 +206,67 @@ function heightSize() {
     }
 }
 
+// Function to discard each card dealt during the round
+function discardCard(card) {
+    // blackJackGame['cardDeck'].splice(randomIndex);
+    if (blackJackGame['cardDeck'].length > 0) {
+        usedCards.push(card);
+        index = blackJackGame['cardDeck'].indexOf(card);
+        blackJackGame['cardDeck'].splice(index);
+    }
+    else{
+        blackJackRestart();
+    }
+    console.log(usedCards);
+    console.log(blackJackGame['cardDeck']);
+}
+
+// Show face down card for the dealer when cards are dealt
+function showFaceDownCard(activePlayer) {
+    let faceDownCard = document.createElement('img');
+    faceDownCard.id = 'face-down-card';
+    faceDownCard.src = 'imgs/back-of-card.png';
+    faceDownCard.style = `width: ${widthSize()}; height: ${heightSize()};`;
+    document.querySelector(activePlayer['div']).appendChild(faceDownCard);
+}
+
+// Function to deal 2 cards to the player and one card and one FaceDownCard to the dealer
+function blackJackDeal() {
+    blackJackDealPlayer();
+    blackJackDealPlayer();
+    blackJackDealDealer();
+}
+
+// Function to deal cards to the player
+function blackJackDealPlayer() {
+    if (blackJackGame['isStand'] === false) {
+        let card = randomCard();
+        showCard(card, you);
+        updateScore(card, you);
+        showScore(you);
+        cardDeckLeft();
+        cardCounter(card);
+        showCardCount();
+        // discardCard(card);
+    }
+}
+
+// Function to deal cards to the player dealer
+function blackJackDealDealer() {
+    if (blackJackGame['isStand'] === false) {
+        let card = randomCard();
+        showCard(card, dealer);
+        updateScore(card, dealer);
+        showScore(dealer);
+        cardDeckLeft();
+        cardCounter(card);
+        showCardCount();
+        // discardCard(card)
+
+        showFaceDownCard(dealer)
+    }
+}
+
 // Function to update the score
 function updateScore(card, activePlayer) {
     if(card.includes('A')) {
@@ -238,20 +302,26 @@ function showScore(activePlayer) {
 function blackJackStand() {
     if (blackJackGame.pressOnce === false) {
         blackJackGame['isStand'] = true;
-        let yourImages = document.querySelector('#your-box').querySelectorAll('img');
-    for (let i = 0; i < yourImages.length; i++) {
-        let card = randomCard();
-        showCard(card, dealer);
-        updateScore(card, dealer);
-        showScore(dealer);
-    }
+        let faceDownCard = document.getElementById('face-down-card');
+        faceDownCard.remove();
 
+    for (let i = 0; i < blackJackGame['cardDeck'].length; i++) {
+        let card = randomCard();
+        if (dealer['score'] <= 16) {
+            showCard(card, dealer);
+            updateScore(card, dealer);
+            showScore(dealer);
+            cardDeckLeft();
+            cardCounter(card);
+            showCardCount();
+            // discardCard(card)
+        }
+    }
     blackJackGame['isTurnsOver'] = true;
 
     computeWinner();
     showWinner(winner);
   }
-
     blackJackGame.pressOnce = true;
 }
 
@@ -309,7 +379,7 @@ function showWinner() {
 }
 
 // Function to make the deal button work
-function blackJackDeal() {
+function blackJackNewHand() {
     
     if (blackJackGame['isTurnsOver'] === true) {
 
@@ -328,6 +398,9 @@ function blackJackDeal() {
 
         for (let i = 0; i < yourImages.length; i++) {
             yourImages[i].remove();
+        }
+
+        for (let i = 0; i < dealerImages.length; i++) {
             dealerImages[i].remove();
         }
 
@@ -340,7 +413,7 @@ function blackJackDeal() {
 // Function to restart the game board
 function blackJackRestart() {
 
-    blackJackDeal();
+    blackJackNewHand();
 
     document.querySelector('#wins').textContent = 0;
     document.querySelector('#losses').textContent = 0;
@@ -350,31 +423,6 @@ function blackJackRestart() {
     blackJackGame.losses = 0;
     blackJackGame.draws = 0;
 }
-
-// // Function to keep the card count
-// function cardCounter(card)  {
-//     switch(card) {
-//         case 2:
-//         case 3:
-//         case 4:
-//         case 5:
-//         case 6:
-//             cardCount++;
-//             break;
-//         case 7:
-//         case 8:
-//         case 9:
-//             cardCount += 0;
-//             break;
-//         case 10:
-//         case 'J':
-//         case 'Q':
-//         case 'K':
-//         case 'A':
-//             cardCount--;
-//     }
-//     return cardCount + (cardCount > 0 ? " Bet" : " Hold");
-// }
 
 // Function to keep the card count
 function cardCounter(card) {
@@ -396,31 +444,16 @@ function showCardCount() {
     }
 }
 
-// // Function to move the randomly chosen card to a new array usedCards
-// function cardDiscard(card) {
-//     let i = 0;
-//     if (blackJackGame['cardDeck'].length > 0) {
-//         let cardIndex = 
-        
-//         let slicedcardArray = blackJackGame['cardDeck'].slice(randomIndex);
-//         usedCards.push(slicedcardArray[i]);
-//     }
-//     else {
-//         blackJackRestart();
-//     }
-// }
-
 // Function to update the cards left in the deck
 let cardsLeft = 52;
 function cardDeckLeft() {
     if (cardsLeft > 0) {
         cardsLeft--;
-        document.querySelector
+        document.querySelector('#cards-left').textContent = cardsLeft;
     }
     else {
-        blackJackRestart()
+        cardsLeft = 52;
     }
-    return cardsLeft;
 }
 
 
@@ -429,22 +462,7 @@ function cardDeckLeft() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ALL CODE BELOW THIS LINE IS FOR THE TWO MODEL BUTTONS ON THE HOMESCREEN
+// ALL CODE BELOW THIS LINE IS FOR THE TWO MODAL BUTTONS ON THE HOMESCREEN AND THE CARD COUNTER MODAL BUTTON 
 
 
 // Defining varibales to be used in functions for modal buttons on start screen
@@ -460,7 +478,7 @@ openModalButtons.forEach(button => {
       const modal = document.querySelector(button.dataset.modalTarget)
       openModal(modal)
     })
-  })
+})
 
 // Adds an overlay to allow the 'BlackJack Game Rules' modal to be closed by clicking anywhere on the screen
 overlay.addEventListener('click', () => {
@@ -476,7 +494,7 @@ overlay2.addEventListener('click', () => {
     modals2.forEach(modal => {
       closeModal(modal)
     })
-  })
+})
 
 // Adds an overlay to allow the 'BlackJack Basic Strategy' modal to be closed by clicking anywhere on the screen
 overlay3.addEventListener('click', () => {
@@ -484,7 +502,7 @@ overlay3.addEventListener('click', () => {
     modals3.forEach(modal => {
       closeModal(modal)
     })
-  })
+})
 
 // Event listener to close the 'BlackJack Game Rules' modal
 closeModalButtons.forEach(button => {
@@ -492,7 +510,7 @@ closeModalButtons.forEach(button => {
       const modal = button.closest('.modal')
       closeModal(modal)
     })
-  })
+})
 
 // Event listener to close the 'BlackJack Basic Strategy' modal
 closeModalButtons.forEach(button => {
@@ -500,7 +518,7 @@ closeModalButtons.forEach(button => {
       const modal2 = button.closest('.modal2')
       closeModal(modal2)
     })
-  })
+})
 
 // Event listener to close the 'BlackJack Basic Strategy' modal
 closeModalButtons.forEach(button => {
@@ -508,18 +526,18 @@ closeModalButtons.forEach(button => {
       const modal3 = button.closest('.modal3')
       closeModal(modal3)
     })
-  })
+})
 
 // Function to open the modal by adding 'active' to the classList
 function openModal(modal) {
     if (modal == null) return
     modal.classList.add('active')
     overlay.classList.add('active')
-  }
+}
 
 // Function to remove the modal by removing 'active' from the classList
 function closeModal(modal) {
     if (modal == null) return
     modal.classList.remove('active')
     overlay.classList.remove('active')
-  }
+}
