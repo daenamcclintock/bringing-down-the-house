@@ -141,6 +141,27 @@ document
 document
     .getElementById('start-button').addEventListener('click', gameStart);
 
+// Event listeners for the betting chips
+// document
+//     .getElementById('one-dollar-chip')
+//     .addEventListener('click', oneDollarChip);
+
+// document
+//     .getElementById('five-dollar-chip')
+//     .addEventListener('click', fiveDollarChip);
+
+// document
+//     .getElementById('ten-dollar-chip')
+//     .addEventListener('click', tenDollarChip);
+
+// document
+//     .getElementById('twenty-five-dollar-chip')
+//     .addEventListener('click', twentyFiveDollarChip);
+
+// document
+//     .getElementById('fifty-dollar-chip')
+//     .addEventListener('click', FiftyDollarChip);
+
 
 // Function to change the UI from the homescreen to the game screen when the startGame button is clicked
 function gameStart() {
@@ -459,9 +480,6 @@ function cardDeckLeft() {
 
 
 
-
-
-
 // ALL CODE BELOW THIS LINE IS FOR THE TWO MODAL BUTTONS ON THE HOMESCREEN AND THE CARD COUNTER MODAL BUTTON 
 
 
@@ -475,24 +493,24 @@ const overlay3 = document.getElementById('overlay3')
 // Adds an event listener and calls the function to open the modal when the button is clicked
 openModalButtons.forEach(button => {
     button.addEventListener('click', () => {
-      const modal = document.querySelector(button.dataset.modalTarget)
-      openModal(modal)
+        const modal = document.querySelector(button.dataset.modalTarget)
+        openModal(modal)
     })
 })
 
 // Adds an overlay to allow the 'BlackJack Game Rules' modal to be closed by clicking anywhere on the screen
 overlay.addEventListener('click', () => {
-  const modals = document.querySelectorAll('.modal.active')
-  modals.forEach(modal => {
-    closeModal(modal)
-  })
+    const modals = document.querySelectorAll('.modal.active')
+    modals.forEach(modal => {
+        closeModal(modal)
+    })
 })
 
 // Adds an overlay to allow the 'BlackJack Basic Strategy' modal to be closed by clicking anywhere on the screen
 overlay2.addEventListener('click', () => {
     const modals2 = document.querySelectorAll('.modal2.active')
     modals2.forEach(modal => {
-      closeModal(modal)
+        closeModal(modal)
     })
 })
 
@@ -500,31 +518,31 @@ overlay2.addEventListener('click', () => {
 overlay3.addEventListener('click', () => {
     const modals3 = document.querySelectorAll('.modal3.active')
     modals3.forEach(modal => {
-      closeModal(modal)
+        closeModal(modal)
     })
 })
 
 // Event listener to close the 'BlackJack Game Rules' modal
 closeModalButtons.forEach(button => {
     button.addEventListener('click', () => {
-      const modal = button.closest('.modal')
-      closeModal(modal)
+        const modal = button.closest('.modal')
+        closeModal(modal)
     })
 })
 
 // Event listener to close the 'BlackJack Basic Strategy' modal
 closeModalButtons.forEach(button => {
     button.addEventListener('click', () => {
-      const modal2 = button.closest('.modal2')
-      closeModal(modal2)
+        const modal2 = button.closest('.modal2')
+        closeModal(modal2)
     })
 })
 
 // Event listener to close the 'BlackJack Basic Strategy' modal
 closeModalButtons.forEach(button => {
     button.addEventListener('click', () => {
-      const modal3 = button.closest('.modal3')
-      closeModal(modal3)
+        const modal3 = button.closest('.modal3')
+        closeModal(modal3)
     })
 })
 
@@ -541,3 +559,46 @@ function closeModal(modal) {
     modal.classList.remove('active')
     overlay.classList.remove('active')
 }
+
+
+
+
+
+
+
+
+// FUNCTIONS FOR BETTING AND CHIPS
+
+// let startingBalance = 250;
+// let bet = 0;
+
+// // function for betting $1
+// function oneDollarBet() {
+//     if (startingBalance > 0) {
+//         bet++
+//     }
+// }
+
+// // function for betting $5
+// function fiveDollarBet() {
+//     if (startingBalance >= 5) {
+//         bet += 5;
+//     }
+// }
+
+// // function for betting $10
+// function tenDollarBet() {
+//     if (startingBalance >= 10) {
+//         bet += 10;
+// }
+
+// // function for betting $10
+// function tenDollarBet() {
+//     if (startingBalance >= 10) {
+//         bet += 10;
+//     }
+// }
+
+
+
+// Function 

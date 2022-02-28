@@ -110,6 +110,8 @@ h3 {
   margin-top: 50px;
   margin-left: 15px;
   padding: 20px;
+  position: relative;
+  bottom: 60px;
 }
 
 table, th, td {
@@ -196,24 +198,7 @@ table, th, td {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ALL CSS BELOW THIS LINE IS FOR THE MODEL BUTTONS */
+/* ALL CSS BELOW THIS LINE IS FOR THE MODAL BUTTONS */
 
 .modal {
   position: fixed;
@@ -397,3 +382,41 @@ table, th, td {
   opacity: 1;
   pointer-events: all;
 }
+
+
+
+
+/* .chips {
+  border-radius: 50%;
+  font-weight: bold;
+  border: 2px solid black;
+  padding: 20px;
+  margin: 10px;
+  position: relative;
+  bottom: 20px;
+}
+
+#one-dollar-chip {
+  background-color: white;
+  color: black;
+}
+
+#five-dollar-chip {
+  background-color: red;
+  color: white
+}
+
+#ten-dollar-chip {
+  background-color: black;
+  color: white;
+}
+
+#twenty-five-dollar-chip {
+  background-color: green;
+  color: white;
+}
+
+#fifty-dollar-chip {
+  background-color: blue;
+  color: white;
+} */
