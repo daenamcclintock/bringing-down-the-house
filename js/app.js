@@ -478,8 +478,6 @@ function cardDeckLeft() {
 }
 
 
-
-
 // ALL CODE BELOW THIS LINE IS FOR THE TWO MODAL BUTTONS ON THE HOMESCREEN AND THE CARD COUNTER MODAL BUTTON 
 
 
@@ -559,7 +557,6 @@ function closeModal(modal) {
     modal.classList.remove('active')
     overlay.classList.remove('active')
 }
-
 
 
 
