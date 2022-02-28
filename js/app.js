@@ -562,8 +562,6 @@ function closeModal(modal) {
 
 
 
-
-
 // FUNCTIONS FOR BETTING AND CHIPS
 
 // let startingBalance = 250;
